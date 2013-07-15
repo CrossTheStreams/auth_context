@@ -1,0 +1,41 @@
+.row-fluid{:style => "margin-top:100px;"}
+  .span2
+  .span8
+    .row-fluid
+      .span4
+        .door
+          %h3 Door 1
+          %button.btn.btn-facebook{:data => {:door => 1}}
+            %i.icon-facebook
+            | Connect with Facebook
+      .span4
+        .door
+          %h3 Door 2
+          %button.btn.btn-facebook{:data => {:door => 2}}
+            %i.icon-facebook
+            | Connect with Facebook
+      .span4
+        .door
+          %h3 Door 3
+          %button.btn.btn-facebook{:data => {:door => 3}}
+            %i.icon-facebook
+            | Connect with Facebook
+  .span2
+.row-fluid
+- case @chosen_door
+  - when '1'
+    .answer
+      %h1 Oh no! That was the wrong door!
+      %img{:src => "/door_1.gif", :width => '300px'}
+  - when '2'
+    .answer
+      %h1 OMG! We've picked an incorrect door!
+      %img{:src => "/door_2.gif"}
+  - when '3'
+    .answer
+      %h1 Yay! You're the boss! 
+      %h1 You picked the correct door!
+      %img{:src => "/door_3.gif"}
+
+
+

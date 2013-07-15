@@ -1,0 +1,49 @@
+!!!
+%html
+%head
+  %title AuthContext
+  = stylesheet_link_tag "/bootstrap.min.css"
+  = stylesheet_link_tag "/social-buttons.css"
+  = stylesheet_link_tag "//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css"
+  = stylesheet_link_tag "application"
+  = javascript_include_tag "application"
+  = csrf_meta_tags
+  %meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}
+  = yield :head
+%body
+  #fb-root
+  :javascript
+    window.fbAsyncInit = function(){
+      FB.init({
+        appId : '#{FACEBOOK["settings"]["app_id"]}',
+        status : true,
+        cookie : true,
+        xfbml : true
+      });
+    };
+     // Load the SDK asynchronously
+     (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "//connect.facebook.net/en_US/all.js";
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
+  .navbar.navbar-inverse.navbar-fixed-top
+    .navbar-inner{:style => "height:40px;"}
+      .container{:style => "height:40px;"}
+        %button.btn.btn-navbar{:type => "button", :data => {:toggle => "collapse", :target => ".nav-collapse"}}
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        %a.brand{:href => "#"} 
+          Contextual Authentication
+        .nav-collapse.collapse
+          %ul.nav
+            %li
+              %a{:href => "https://github.com/CrossTheStreams/auth_context", :target => "_blank"} 
+                GitHub Repo
+  .container{:style => "margin-top:50px;"}
+    %h1 Hello there!
+    %h3 Authenticate into the correct door to avoid certain doom!
+    = yield 
